@@ -41,6 +41,8 @@ export class QuestionService {
         order: 2,
       }),
     ];
+
+    console.log("getQuestions mock data ", questions);
     return of(questions.sort((a, b) => a.order - b.order));
   }
 

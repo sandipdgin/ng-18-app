@@ -1,0 +1,65 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>
+          <input
+            class="checkbox"
+            type="checkbox"
+            [indeterminate]="indeterminateSig()"
+            [checked]="totalSelectedSig()"
+            (change)="selectAll($event)"
+          />
+        </th>
+        <th class="numChecked">
+            @if(totalSelectedSig() > 0){
+                <span>Selected {{ totalSelectedSig() }}</span>
+            } @else {
+                <span>None</span>
+            }
+        </th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Message</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(issue of issuesSig(); track issue.id){
+        <tr
+          [ngClass]="{
+            openIssue: issue.status === 'open',
+            resolvedIssue: issue.status === 'resolved'
+          }"
+          [ngStyle]="{
+            backgroundColor: issueEntriesSig()[issue.id].isSelected
+              ? '#eeeeee'
+              : '#ffffff'
+          }"
+          (click)="selectRow(issue.id)"
+        >
+          <td>
+            <input
+              class="checkbox"
+              type="checkbox"
+              [checked]="issueEntriesSig()[issue.id].isSelected"
+            />
+          </td>
+          <td>{{ issue.name }}</td>
+          <td>{{ issue.message }}</td>
+          <td>
+            <span
+              [ngClass]="{
+                openCircle: issue.status === 'open',
+                resolvedCircle: issue.status === 'resolved'
+              }"
+            ></span>
+          </td>
+        </tr>
+      } @empty {
+        No issue found.
+      }
+
+    </tbody>
+  </table>

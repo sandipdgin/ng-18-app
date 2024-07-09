@@ -16,6 +16,7 @@ export class QuestionControlService {
         ? new FormControl(question.value || '', Validators.required)
         : new FormControl(question.value || '');
     });
+    console.log("toFormGroup convert to form field ", questions, " group ", group);
     return new FormGroup(group);
   }
 

@@ -1,0 +1,21 @@
+<p>child-form2 works!</p>
+
+<div>
+    <form [formGroup]="child2Form" (ngSubmit)="onSubmit()">
+        <div>
+            <input type="text" formControlName="firstName" placeholder="First Name">
+            <small>
+                @if(child2Form.controls.firstName.invalid && (child2Form.controls.firstName.touched || child2Form.controls.firstName.dirty)) {
+                    @if(child2Form.controls.firstName.errors?.["required"]){
+                        This field is required.
+                    } 
+                }
+            </small>
+        </div>
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>

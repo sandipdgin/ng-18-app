@@ -1,0 +1,18 @@
+<p>child-form1 works!</p>
+
+<div>
+    <form [formGroup]="child1Form" (ngSubmit)="onSubmit()">
+        <div>
+            <select [id]="formData.fieldType" formControlName="selectStatus" (change)="selectedOption()">
+                @for (opt of formData.options; track opt) {
+                  <option [value]="opt.key">{{ opt.value }}</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>

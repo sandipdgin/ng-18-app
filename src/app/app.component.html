@@ -1,14 +1,28 @@
+<header>
+  <h1>Angular 18</h1>
+  <section>
+    <nav>
+      <ul>
+          <li><button routerLink="home" routerLinkActive="active">Home</button></li>
+          <li><button routerLink="reactive-form" routerLinkActive="active">Reactive Form</button></li>
+          <li><button routerLink="dynamic-form" routerLinkActive="active">Dynamic Reactive Form</button></li>
+          <li><button routerLink="issue-grid" routerLinkActive="active">Grid <small>(using signal)</small></button></li>
+          <li><button routerLink="forms-data-sharing" routerLinkActive="active">Forms data sharing</button></li>
+          <li><button routerLink="pizza-app" routerLinkActive="active">Pizza App</button></li>
+      </ul>
+    </nav>
+  </section>
+  <hr/>
+
+</header>
 
 <main class="main">
-  <div class="content">
-    <div class="left-side">
-      left side
-    </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="right-side">
-      right side
-    </div>
-  </div>
+  <section class="content">
+      <router-outlet />
+  </section>
 </main>
 
-<router-outlet />
+<footer>
+  <hr/>
+  Powered by Sandip Gadhave &#64;2024.
+</footer>

@@ -1,0 +1,92 @@
+<section>
+    <h3>Add Pizza</h3>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div>
+                <input type="text" formControlName="name" placeholder="Piza Name">
+                <small>
+                    @if(form.controls.name.invalid && (form.controls.name.touched || form.controls.name.dirty)) {
+                        @if(form.controls.name.errors?.["required"]){
+                            This field is required.
+                        } 
+                        @if(form.controls.name.errors?.["minlength"]){
+                            The name should be min 3 characters.
+                        }
+                    }
+                </small>
+            </div>
+
+            <div>
+                <input type="number" formControlName="price" placeholder="Price">
+                <small>
+                    @if(form.controls.price.invalid && (form.controls.price.touched || form.controls.price.dirty)) {
+                        @if(form.controls.price.errors?.["required"]){
+                            This field is required.
+                        }
+                        @if(form.controls.price.errors?.["minlength"]){
+                            The name should be min 1 characters.
+                        }
+                    }
+                </small>
+            </div>
+
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<hr/>
+
+<section>
+    Search: <input type="text" [(ngModel)]="searchText"> 
+    <button type="button" (click)="getPizzaDetail(searchText)">Submit</button> 
+    <button type="button" (click)="clearPizzaDetail()">Clear</button>
+
+    <div>{{searchResult | json }}</div>
+    <table border="1">
+        <tr>
+            <th>Select</th>
+            <th>ID</th>
+            <th>Pizza Name </th>
+            <th>Price</th>
+        </tr>
+        @for(pizza of menu; track pizza.id){
+            <tr>
+                <td><input type="checkbox" (change)="onCheckboxSelect($event, pizza)" ></td>
+                <td>{{pizza.id}}</td>
+                <td>{{pizza.name}}</td>
+                <td>{{pizza.price}}</td>
+            </tr>
+        }
+    </table>
+</section>
+
+<hr>
+
+<section>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Pizza Name </th>
+            <th>Price</th>
+        </tr>
+        @for(order of selectedPizza; track order.id){
+            <tr >                
+                <td>{{order.id}}</td>
+                <td>{{order.name}}</td>
+                <td>{{order.price}}</td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td>Total</td>
+            <td> {{ cashInRegister }} </td>
+        </tr>
+    </table>
+
+    <button type="button" (click)="placeOrder()">Place Order</button>
+
+</section>
+
